@@ -15,7 +15,7 @@ req_cat = {
 }
 
 def get(distance):
-    url = 'https://browse.search.hereapi.com/v1/browse?apiKey=6ZUvGkcQ7LS730i6Izq2Tf3Oy30z31X9s7UZ3BU81aQ&at=28.636507423890134,77.29259567115122&categories=900-9300-0221&limit=100&r='+str(distance)
+    url = 'https://browse.search.hereapi.com/v1/browse?apiKey=' + os.getenv('HERE_API_KEY') + '&at=28.636507423890134,77.29259567115122&categories=900-9300-0221&limit=100&r='+str(distance)
     response = requests.request("GET",url)
     resp = response.json()
     coord = set()
@@ -24,13 +24,13 @@ def get(distance):
     return coord
 
 def get_cat(x,y,category):
-    url = 'https://browse.search.hereapi.com/v1/browse?apiKey='+ os.getenv('HERE_API_KEY_4') + '&at='+str(x)+','+str(y)+'&categories='+category+'&in=circle:'+str(x)+','+str(y)+';r=500&limit=100'
+    url = 'https://browse.search.hereapi.com/v1/browse?apiKey='+ os.getenv('HERE_API_KEY') + '&at='+str(x)+','+str(y)+'&categories='+category+'&in=circle:'+str(x)+','+str(y)+';r=500&limit=100'
     response = requests.request("GET",url)
     resp = response.json()
     return len(resp['items'])
 
 def get_final(x,y,distance):
-    url = 'https://browse.search.hereapi.com/v1/browse?apiKey=6ZUvGkcQ7LS730i6Izq2Tf3Oy30z31X9s7UZ3BU81aQ&at='+str(x)+','+str(y)+'&categories=900-9300-0221&limit=100&r='+str(distance)
+    url = 'https://browse.search.hereapi.com/v1/browse?apiKey=' + os.getenv('HERE_API_KEY') + '&at='+str(x)+','+str(y)+'&categories=900-9300-0221&limit=100&r='+str(distance)
     response = requests.request("GET",url)
     resp = response.json()
     coord = set()
