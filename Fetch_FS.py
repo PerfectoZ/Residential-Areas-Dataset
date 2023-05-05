@@ -24,7 +24,7 @@ def get_cat(x,y,category):
     url = "https://api.foursquare.com/v3/places/search?ll="+str(x)+"%2C"+str(y)+"&radius=1000&categories="+str(category)+"&limit=50"
     headers = {
         "accept": "application/json",
-        "Authorization": "fsq3MlJNiLosIk4vGg3MXQwuoEZLDNdePbO+sQAOJa9w34k="
+        "Authorization": os.getenv('FS_API_KEY')
     }
     response = requests.request("GET",url,headers=headers)
     resp = response.json()
